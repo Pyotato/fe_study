@@ -76,11 +76,54 @@ const obj2 = {val: 90};
 ||004|
 ||005|
 
-## Mark and Sweep 알고리즘
+
+## Reference-counting garbage collection (⚠️ 현대 자바스크립트 엔진은 더이상 쓰지 않음)
+
+- 가비지 콜렉터는 값이 더 이상 필요없을 떄, 즉 쓰이지 않을 경우에 메모리를 회수한다고 한다. Reference-counting(참조 카운팅)은 결국 이 값이 더 이상 쓰이지 않을 경우를 체크해서 가비지 컬렉트의 대상 여부를 판단한다.
+- 즉, 값(객체)이 계속 쓰이는 지를 구분하기 위해 참조하는 경우가 0일 때 가비지가 되고, 회수의 대상이 된다.
+- 예를 들어,
+  
+  ```js
+  let x = {      //  1
+    a:{          // 2
+      b:2,
+    }
+  }
+  // 2개의 객체가 생성되었고, 2는 1의 속성으로 참조되고, 1은 변수 x에 할당되어 참조되므로 모두 gc 대상이 아니다.
+
+  let y = x; //   y 라는 변수는 x의 객체를 참조한다.
+  x = 1; //  객체를 참조하고 있던 변수 x는 이제 다른 값을 가리키게 되었으므로 y만이 생성되었던 객체를 참조한다.
+
+  let z = y.a; // z 변수는 객체의 속성인 a에 참조하게 되었으므로, 객체는 이제 2개의 참조가 있다
+
+  y = 'mozilla'; // 생성했던 객체는 이제 참조 카운트가 0이 되었으므로 가비지 콜렉트의 대상이 되었다. 하지만, z변수가 해당 객체의 a 속성을 참조하기 때문에 메모리 해제가 불가능하다.
+
+  z = null;  // z변수가 더이상 객체의 a 속성을 참조하지 않아 해당 객체는 참조 카운트가 0이므로 가비지 콜렉트가 가능하다.
+  ```
+
+- 하지만 단순히 참조 카운트만 체크하는 방식은 순환참조 (circular reference)가 존재한다면 메모리 누수의 원인이 될수 있는 문제가 발생한다.
+- 예를 들어,
+
+  ```js
+  function f(){ // 함수 내부에 객체 x,y가 있으므로 함수가 종료하면 가비지이므로 할당했던 메모리를 회수해야 한다. 
+    const x = {};
+    const y = {};
+    x.a = y;  // x는 y를 참조하고
+    y.a = x;  // y는 x를 참조한다
+    // x와 y가 서로를 참조하기 때문에 둘 모두 참조 카운트를 감소하지 못해서 코드가 실행을 완료했어도 가비지 콜렉트의 대상이 되지 못한다.
+    return 'azerty';
+  }
+
+  f();
+  ```
+> reference counting : 참조하는 대상이 하나라도 있으면 메모리 해제 못함. (서로를 참조하면 해제 불가)
+> Mark and Sweep : 접근이 불가능하면 참조가 없는 것이므로 메모리 해제 가능함.
+
+## Mark and Sweep 알고리즘 (현대 모든 엔진이 사용 중)
 
 - 가비지 컬렉터는 값이 회수 대상인 지 여부를 가리키 위해 객체가 접근 가능한 지 Mark and Sweep 알고리즘를 활용한다.
 - Mark and Sweep 알고리즘은 3 단계를 통해 이루어진다.
-    1. Root: 코드에서 참조하는 전역 객체를 root라고 한다. 자바스크립트에서의 전역 객체는 `window`이고, Nodejs에서는 `global`이다. 가비지 컬렉터는 root에서부터 모든 자식들의 리스트를 지닌다.
+    1. Roots: 코드에서 참조하는 전역 객체를 roots라고 한다. 자바스크립트에서의 전역 객체는 `window`이고, Nodejs에서는 `global`이다. 가비지 컬렉터는 root에서부터 모든 자식들의 리스트를 지닌다.
     2. 가비지 컬렉터는 모든 루트들과 그 자식들을 살펴보면서 접근 가능하면 `active`, 접근 불가능하면 `garbage`라고 mark(표시)한다.
     3. `active`라고 mark되지 않은 메모리 부분들을 모두 해제하고 OS에게 돌려준다 (sweep).
 
@@ -114,6 +157,10 @@ let family = marry({name:'John'},{name:'Ann'});
 
 - John 과 Ann이 아직 서로를 참조하고 있다는 사실은 변함없지만, 상위의 family라는 객체가 root에서 참조되지 않기 때문에 더이상 접근 가능하지 않아 (garbage로 mark됨) 회수의 대상이 된다.
 
+
+- 이전 `reference counting`에서의 순환 참조 문제도 `mark and sweep`에서는 문제가 되지 않는다.
+  - 함수가 종료되는 시점에서는 더이상 함수 내부의 변수에 대한 참조가 없고, 전역 객체에서 이를 참조하지 않으므로 접근이 불가능해져서 메모리 해제의 대상이 된다.
+
 > 🤔 얼마나 자주 가비지 컬렉트를 해야 성능에 문제가 없으면서 메모리를 효율적으로 쓸 수 있을까? <br/>
 > 최적화 기법들: <br/>
 > - `Generational collection` : generation(세대)가 거듭되어 오래 살아남은 객체를 덜 검사하는 방식. 객체가 생성되면 역할을 빠르게 처리하고 회수하는 과정을 반복하면, `새로운 객체`와 `오래된 객체`(과정을 반복하면서 소멸되지 않았던 객체)로 나뉘게 되는데, 이 오래된 객체를 덜 살펴보는 방식이다.
@@ -131,10 +178,15 @@ let family = marry({name:'John'},{name:'Ann'});
 - `Old-space`의 객체들은 `mark-sweep(대규모 가비지 컬렉션 사이클)`이 있을 떄 회수된다.
    - 대규모 가비지 컬렉션은 scavenge에 비해 덜 이루어지는데, 특정 규모의 메모리가 old space를 위해 쓰이게 된다면 발동된다.
    - 이 규모는 old space의 크기와 프로그램의 동작에 따라 가변적이다.
- 
+
+## 메모리 관리를 도와주는 자료구조들
+
+- 자바스크립트는 가비지 콜렉션을 제어하는 방식에 대한 직접적인 api는 제공하지 않지만, 자료구조를 통해 간접적으로 가비지 컬렉션이 어떻게  메모리 관리되는 지를 관찰할 수 있다.
+
+- [WeakMaps 와 WeakSets]()에 관해서..
 
 ## references
 
 - [javascrip internals(GC, MEMORY MANAGEMENT)](https://www.linkedin.com/pulse/javascript-internals-gc-memory-management-zubair-altaf/)
-
+- [mozilla: Memory_management](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_management#data_structures_aiding_memory_management)
 
