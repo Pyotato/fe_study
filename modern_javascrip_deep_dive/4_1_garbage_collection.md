@@ -77,8 +77,9 @@ const obj2 = {val: 90};
 ||005|
 
 
-## Reference-counting garbage collection (⚠️ 현대 자바스크립트 엔진은 더이상 쓰지 않음)
+## Reference-counting garbage collection 
 
+- ⚠️ 현대 자바스크립트 엔진은 더이상 쓰지 않음!
 - 가비지 콜렉터는 값이 더 이상 필요없을 떄, 즉 쓰이지 않을 경우에 메모리를 회수한다고 한다. Reference-counting(참조 카운팅)은 결국 이 값이 더 이상 쓰이지 않을 경우를 체크해서 가비지 컬렉트의 대상 여부를 판단한다.
 - 즉, 값(객체)이 계속 쓰이는 지를 구분하기 위해 참조하는 경우가 0일 때 가비지가 되고, 회수의 대상이 된다.
 - 예를 들어,
@@ -183,7 +184,7 @@ let family = marry({name:'John'},{name:'Ann'});
 
 - 자바스크립트는 가비지 콜렉션을 제어하는 방식에 대한 직접적인 api는 제공하지 않지만, 자료구조를 통해 간접적으로 가비지 컬렉션이 어떻게  메모리 관리되는 지를 관찰할 수 있다.
 
-- [WeakMaps 와 WeakSets]()에 관해서..
+- [WeakMaps 와 WeakSets](#)
 
 ## references
 
