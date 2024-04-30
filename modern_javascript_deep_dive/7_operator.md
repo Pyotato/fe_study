@@ -1,17 +1,8 @@
 # 7장 연산자
 
 <details>
-<summary> 1. 연산자의 종류에는 뭐가 있나요? </summary>
 
-```
-변수(variable)란 값을 저장하기 위해 할당된 메모리 공간
-```
-
-</details>
-
-<details>
-
-<summary> 2. 단항 산술 연산자는 모두 부수효과가 없다.(🅾️ / ❎)</summary>
+<summary> 1. 단항 산술 연산자는 모두 부수효과가 없다.(🅾️ / ❎)</summary>
 
 ```
 ❎
@@ -37,7 +28,7 @@ let a = true일 경우에 -a는 -1입니다. 마찬가지로 true를 숫자로 �
 </details>
 
 <details>
-<summary> 3. 후위 단항 연산자와 전위 단항 연산자의 차이가 뭔가요?</summary>
+<summary> 2. 후위 단항 연산자와 전위 단항 연산자의 차이가 뭔가요?</summary>
 
 ```
 후위 단항연산자는 암묵적 할당이 먼저 일어나고 그 후에 연산이 이루지는 반면,
@@ -54,7 +45,7 @@ let b = a++;을 풀어서 보면, let b = a; a+=1; 과 같습니다.
 </details>
 
 <details>
-<summary> 4. 동등비교(==)와 일치비교(===)의 차이점은 뭔가요? Object.is()에 관해서 알고 있나요?</summary>
+<summary> 3. 동등비교(==)와 일치비교(===)의 차이점은 뭔가요? Object.is()에 관해서 알고 있나요?</summary>
 
 ```
 동등 비교는 단순히 값이 같은 지 평가를 하고, 일치 비교는 값이 같고, 타입 또한 같은 지 여부에 따라 true/false를 반환합니다.
@@ -71,7 +62,7 @@ Object.is()는 NaN 값 간의 비교와 +0과 -0 를 비교할 떄와 같이, �
 </details>
 
 <details>
-<summary> 5. typeof null은 'object'이다.(🅾️ / ❎)</summary>
+<summary> 4. typeof null은 'object'이다.(🅾️ / ❎)</summary>
 
 ```
 🅾️
@@ -83,7 +74,7 @@ null은 null 타입이지만 typeof 연산시에 object를 반환한다.
 </details>
 
 <details>
-<summary> 6. 선언하지 않은 변수의 typeof 연산 결과는 무조건 undefined이다. (🅾️ / ❎)</summary>
+<summary> 5. 선언하지 않은 변수의 typeof 연산 결과는 무조건 undefined이다. (🅾️ / ❎)</summary>
 
 ```
 ❎
@@ -93,17 +84,15 @@ null은 null 타입이지만 typeof 연산시에 object를 반환한다.
 만약 typeof localStorage를 콘솔로 찍어보면 object 타입임으로 알 수 있습니다.
 이는 체이닝에 의해서, 현재 실행 컨텍스트에는 해당 변수 선언을 찾지 못했기 때문에,
 상위의 컨텍스트로 올라가다 최상위의 global에서 해당 객체의 타입을 반환한 것입니다.
-
 ```
 
 </details>
 
 <details>
-<summary> 7. 이항 연산자 중에서 가장 높은 우선 순위를 지닌 연산자는 무엇인가요? </summary>
+<summary> 6. 이항 연산자 중에서 가장 높은 우선 순위를 지닌 연산자는 무엇인가요? </summary>
 
 ```
 `**` 지수 연산자가 이항 연산자 중에서 제일 우선 순위가 높습니다.
-
 ```
 
 </details>
