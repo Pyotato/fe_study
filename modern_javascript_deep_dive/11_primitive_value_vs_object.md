@@ -14,7 +14,7 @@
 </details>
 
 <details>
-<summary> 2. 값에 의한 전달(call by value)과 참조에 의한 전달(call by reference) 차이  </summary>
+<summary> 2. 값에 의한 전달과 참조에 의한 전달 차이  </summary>
 
 ```
 
@@ -78,7 +78,7 @@ let a = {x:1,y:[1,2,3]}; let b = a; let c = {x:1,y:[1,2,3]};
 
 <details>
 
-<summary> 4. call by value와 call by reference 에 대해 설명해주세요. </summary>
+<summary> 5. call by value와 call by reference 에 대해 설명해주세요. </summary>
 
 ```
 
