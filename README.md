@@ -4,7 +4,7 @@
 
 ## About
 
-> 프론트엔드 공부를 하면서 생각 정리를 하기 위한 레포입니다.<br/> [모던자바스크립트 딥다이브 공부](https://github.com/Pyotato/fe_study/tree/main/modern_javascript_deep_dive) 시작일: `2024.04.29 ~`
+> 프론트엔드 공부를 하면서 생각 정리를 하기 위한 레포입니다.<br/> [모던자바스크립트 딥다이브 공부](https://github.com/Pyotato/fe_study/blob/main/modern_javascript_deep_dive/README.md) 시작일: `2024.04.29 ~`
 
 ## 모던 자바스크립트 딥다이브
 
