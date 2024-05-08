@@ -102,7 +102,7 @@ console.log(queue.entries()); // [2, 3]
 
 <details>
 
-<summary> 5. 배열 메서드 중 중첩된 함수들을 모두 평탄화할 수 있는 방법은? </summary>
+<summary> 5. 배열 메서드 중 중첩된 배열들을 모두 평탄화할 수 있는 방법은? </summary>
 
 ```js
 array.prototype.flat(Infinity);를 통해 깊이 중첩된 배열들도 모두 일차배열로 변경할 수 있습니다.
