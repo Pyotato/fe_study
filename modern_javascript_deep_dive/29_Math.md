@@ -1,10 +1,13 @@
-# XX장 title
+# 29장 Math
 
 <details>
 
-<summary> 1. question </summary>
+<summary> 1. 수의 최대값을 구하는 방법? </summary>
 
 ```
+Math.max 메서드를 통해 매개변수로 받은 원소들 중 가장 큰 수를 반환합니다. 인수를 배열로 전달할 경우, ... 스프레드 문법을 활용할 수 있습니다.
+
+예를 들어, Math.max(...[1,2,3,14,213,6234235,2,342]); //6234235
 
 ```
 
@@ -12,4 +15,4 @@
 
 ## 💭 TMI
 
-> comments on the topic I learned today
+> 코테를 풀 때 Math.max랑 Math.min를 자주 썼던 거 같다.
