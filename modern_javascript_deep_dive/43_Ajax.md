@@ -82,4 +82,4 @@ POST 요청 메서드의 경우 데이터 페이로드를 request body에 담아
 
 ## 💭 TMI
 
->
+> 뭔가 ajax가 비동기적으로 XMLHTTP 요청을 핸들링하는 역할을 하는 거라면 비슷한 역할을 하는 axios나 fetch가 어떻게 다른지, axios vs ajax vs fetch 에 대해 궁금해졌다. 나중에 한번 파봐야겠다.<br/> 그리고 POST와 GET 요청에 대해서도 더 깊게 탐구해봐야겠다.
