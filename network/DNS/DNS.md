@@ -95,6 +95,26 @@ recursive DNS query와 recursive DNS resolver의 차이를 눈여겨 봐야합�
 
 ### DNS 캐싱이란? DNS 캐싱이 발생하는 곳?
 
+캐싱의 목적은 일시적으로 데이터를 저장해서 데이터 요청의 신뢰성과 성능을 개선하는 것입니다. DNS 캐싱은 요청을 하는 클라이언트의 위치에 더 가까운 위치에 데이터를 저장해서 DNS 쿼리가 더 일찍 끝나고 DNS 룩업 체인을 타고가는 추가적인 쿼리를 피해서 로드 시간을 개선하고 bandwidth/CPU 소모를 줄입니다. DNS 데이터는 여러 장소에 캐싱될 수 있습니다. 각각의 장소는 DNS 레코드는 time-to-live(TTL)에 의해 일정한 시간동안 저장됩니다.
+
+#### Browser DNS 캐싱
+
+모던 웹브라우저는 디폴트로 DNS 레코드를 일정 캐싱하도록 디자인되었습니다.
+DBS 캐싱이 웹브라우저에 더 가까울 수록, 캐시가 맞는 건지 확인하는데 걸리는 단계를 축소할 수 있고, IP주소에 올바른 요청을 할 수 있습니다.
+DNS 레코드에 대한 요청이 발생했을 떄 가장 먼저 확인 되는 곳이 브라우저 캐시입니다.
+
+#### OS level DNS 캐싱
+
+운영체제(OS) 레벨의 DNS resolver는 DNS 쿼리가 현재 기기를 떠나기 전 들리는 마지막 로컬 저장소입니다.
+이 쿼리를 핸들링하기 위한 운영체제 내부의 프로세스는 주로 **stub resolver** 또는 DNS 클라이언트라고 불립니다.
+**stub resolver**가 애플리케이션으로부터 요청을 받으면, 레코드가 있는 지 먼저 자신의 캐시를 확인합니다. 만약 없다면, recursive 플래그를 설정한 DNS 쿼리를, 로컬 네트워크 밖의 ISP(Internet Service Provider) 내 DNS recursive resolver한테 보냅니다.
+
+Recursive resolver는 추가적으로 캐시 내에 있는 레코드의 타입에 따라 추가적으로 적절한 기능을 지니고 있습니다.
+
+1. resolver가 A record가 없지만, authoritative nameser들에 대응하는 [NS record]()를 갖고 있다면, DNS쿼리 단계들을 생략하고, 해당 네임서버들에게 직접 쿼리를 합니다.
+2. 만약 resolver가 NS record가 없다면, root server를 스킵하고 TLD서버(`.com`)에게 쿼리를 보냅니다.
+3. resolver가 TLD 서버를 가리키는 레코드가 없는 드문 경우에는 root server를 쿼리합니다. 이는 주로 DNS 쿼리가 제거되고 나서 일어납니다.
+
 ## References
 
 - [What is DNS | How DNS works](https://www.cloudflare.com/learning/dns/what-is-dns/)

@@ -14,7 +14,7 @@ NS 레코드의 예시:
 | :---------: | :----------: | :--------------------: | :---: |
 |      @      |      NS      | ns1.exmaple.server.com | 21600 |
 
-‼️ NS record들은 절대로 [CNAME record (canonical name))]()를 가리킬 수 없다는 점에 주목해주세요.
+‼️ NS record들은 절대로 [CNAME record (canonical name))](https://github.com/Pyotato/fe_study/blob/main/network/DNS_CNAME_record.md)를 가리킬 수 없다는 점에 주목해주세요.
 
 ## Nameserver란?
 
