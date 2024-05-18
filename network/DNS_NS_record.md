@@ -40,4 +40,4 @@ NS 레코드들이 업데이트되면, DNS 전반의 변경사항을 복제를 �
 
 ## References
 
-[](https://www.cloudflare.com/learning/dns/dns-records/dns-ns-record/)
+[DNS NS record](https://www.cloudflare.com/learning/dns/dns-records/dns-ns-record/)
