@@ -4,7 +4,7 @@
 
 ## About
 
-> 프론트엔드 공부를 하면서 생각 정리를 하기 위한 레포입니다.<br/> [모던자바스크립트 딥다이브 공부](https://github.com/Pyotato/fe_study/blob/main/modern_javascript_deep_dive/README.md) 시작일: `2024.04.29 ~ 2024.05.17`
+> 프론트엔드 공부를 하면서 생각 정리를 하기 위한 레포입니다.<br/> [모던자바스크립트 딥다이브 공부](https://github.com/Pyotato/fe_study/blob/main/modern_javascript_deep_dive/README.md) 시작일: `2024.04.29 ~ 2024.05.21`
 >
 > - [모던 자바스크립트 딥다이브](https://github.com/Pyotato/fe_study?tab=readme-ov-file#%EB%AA%A8%EB%8D%98-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EB%94%A5%EB%8B%A4%EC%9D%B4%EB%B8%8C)
 > - [모던 자바스크립트 디퍼 다이브](https://github.com/Pyotato/fe_study?tab=readme-ov-file#-%EB%AA%A8%EB%8D%98-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-deeper-%EB%8B%A4%EC%9D%B4%EB%B8%8C--%EB%94%A5%EB%8B%A4%EC%9D%B4%EB%B8%8C-%EC%9D%BD%EC%9C%BC%EB%A9%B4%EC%84%9C-%EB%8D%94-%ED%8C%8C%EB%B3%B8-%EB%82%B4%EC%9A%A9%EB%93%A4) : 모던 자바스크립트 딥다이브를 읽으면서 더 궁금해서 탐구한 내용들에 대한 정리
@@ -12,6 +12,8 @@
 > - [네트워크](https://github.com/Pyotato/fe_study/tree/main/network)
 
 ## 모던 자바스크립트 딥다이브
+
+> [🥳 3주 모던 자바스크립트 딥다이브 1회 완독 후기](https://github.com/Pyotato/fe_study/tree/main/modern_javascript_deep_dive#%EF%B8%8F-3%EC%A3%BC-%EB%AA%A8%EB%8D%98-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EB%94%A5%EB%8B%A4%EC%9D%B4%EB%B8%8C-%EC%99%84%EB%8F%85-%ED%9B%84%EA%B8%B0)
 
 | 분류                                                                                                                                                                                            | 내용                                                                                                                                                                                                                                                                                                               |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
