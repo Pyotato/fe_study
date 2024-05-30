@@ -63,4 +63,5 @@ export function debounce<F extends (...args: Parameters<F>) => ReturnType<F>>(
 
 > setTimeout의 리턴 타입이 환경에 따라서 달라진다는 걸 처음 알았다!
 > 브라우저 환경에서는 number 타입이지만, NodeJS 환경에서는 NodeJS.Timeout이구나!
-> 그럼 노드환경이랑 브라우저 환경은 어떻게 다르지? [nodejs-vs-browser](https://www.geeksforgeeks.org/nodejs-vs-browser/)
+> 그럼 노드환경이랑 브라우저 환경은 어떻게 다르지? [nodejs-vs-browser](https://www.geeksforgeeks.org/nodejs-vs-browser/)에서 더 살펴보자.
+> 끝인 줄 알았는데, 리액트에서는 re-render 이슈가 있다 [리액트에서 디바운스 ft. use훅](https://www.developerway.com/posts/debouncing-in-react)
