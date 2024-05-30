@@ -11,6 +11,7 @@
 > - [모던 리액트 딥다이브](https://github.com/Pyotato/fe_study/tree/main?tab=readme-ov-file#-%EB%AA%A8%EB%8D%98-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-deeper-%EB%8B%A4%EC%9D%B4%EB%B8%8C--%EB%94%A5%EB%8B%A4%EC%9D%B4%EB%B8%8C-%EC%9D%BD%EC%9C%BC%EB%A9%B4%EC%84%9C-%EB%8D%94-%ED%8C%8C%EB%B3%B8-%EB%82%B4%EC%9A%A9%EB%93%A4) [🔗](https://github.com/Pyotato/fe_study/blob/main/modern_react_deep_dive/README.md) : `2024.05.21 ~ `
 > - [웹성능]() [🔗](https://github.com/Pyotato/fe_study/blob/main/web_performance/README.md): 성능 최적화를 위해 공부한 개념들 정리
 > - [네트워크](https://github.com/Pyotato/fe_study/tree/main/network) [🔗](https://github.com/Pyotato/fe_study/blob/main/network/README.md)
+> - [개발일기](https://github.com/Pyotato/fe_study/tree/main?tab=readme-ov-file#-%EA%B0%9C%EB%B0%9C%EC%9D%BC%EA%B8%B0)
 
 ## 모던 자바스크립트 딥다이브
 
