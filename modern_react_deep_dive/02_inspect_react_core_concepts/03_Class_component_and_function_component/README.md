@@ -274,6 +274,202 @@ function Child() {
 
 </details>
 
+<details>
+
+<summary> 4. 함수 컴포넌트와 클래스 컴포넌트의 차이? </summary>
+
+```
+16.8 버전 이전에는 함수 컴포넌트는 무상태의 컴포넌트를 구현하기 위해 쓰였지만,
+16.8 버전 이후에는 훅을 통해 props와 state에 접근할 수 있게 되었습니다.
+
+클래스 컴포넌트와 함수 컴포넌트의 가장 큰 차이는
+함수 컴포넌트에는 생명주기가 존재하지 않는다는 점과,
+함수 컴포넌트와 클래스 컴포넌트는 서로 렌더링된 값에 차이가 있습니다.
+
+함수 컴포넌트는 props를 받아 리액트 요소만 반환하는 함수이기 때문에
+생명주기가 따로 없지만, 클래스 컴포넌트는 render 메서드가 있는
+React.Component를 상속받아 구현하는 자바스크립트 클래스이기 때문입니다.
+대신 함수 컴포넌트는 useEffect와 같은 훅을 통해 componentDidmount,
+componentDidUpdate, componentWillUpdate 를 비슷하게 구현할 수 있습니다.
+
+함수 컴포넌트와 클래스 컴포넌트는 서로 렌더링된 값에 차이가 있는데,
+함수 컴포넌트는 렌더링된 값을 고정하고, 클래스 컴포넌트는 고정할 수 없다는 것입니다.
+이는 함수 컴포넌트는 렌더링된 시점의 props와 state를 기준으로 리렌더링되고,
+리렌더링된 값을 기준으로 함수가 호출되지만,
+클래스 컴포넌트는 시간의 흐름에 따라 변화하는 this를 기준으로 렌더링이 발생하기
+때문입니다.
+
+```
+
+- 클래스 컴포넌트와는 달리 함수 컴포넌트는 생명 주기가 없습니다.
+
+```tsx
+// 클래스 컴포넌트
+
+import React from "react";
+
+interface SampleProps {
+  required?: boolean;
+  text: string;
+}
+
+interface SampleState {
+  count: number;
+  isLimited?: boolean;
+}
+
+class SampleComponent extends React.Component<SampleProps, SampleState> {
+  private constructor(props: SampleProps) {
+    super(props);
+    this.state = {
+      count: 0,
+      isLimited: false,
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  private handleClick = () => {
+    const newValue = this.state.count;
+    this.setState({ count: newValue, isLimited: newValue >= 10 });
+  };
+
+  public render() {
+    const {
+      props: { required, text },
+      state: { count, isLimited },
+    } = this;
+
+    return (
+      <h2>
+        Sample Component
+        <div>{required ? "필수" : "필수 아님"}</div>
+        <div>문자: {text}</div>
+        <div>count: {count}</div>
+        <button onClick={this.handleClick} disabled={isLimited}>
+          증가
+        </button>
+      </h2>
+    );
+  }
+}
+```
+
+```tsx
+// 함수 컴포넌트
+// render 내부에서 필요한 함수를 선언할 때 this 바인딩 신경 안써도 됨
+// state는 객체가 아닌 각각의 원시값으로 관리되므로 사용 편리
+// 렌더링하는 코드인 return에서 굳이 this 안써도 props, state 접근 가능
+import { useState } from "react";
+type SampleProps = {
+  required?: boolean;
+  text: string;
+};
+
+export function SampleComponent({ required, text }: SampleProps) {
+  const [count, setCount] = useState<number>(0);
+  const [isLimited, setIsLimited] = useState<boolean>(false);
+
+  function handleClick() {
+    const newValue = count + 1;
+    setCount(newValue);
+    setIsLimited(newValue >= 10);
+  }
+
+  return (
+    <h2>
+      Sample Component
+      <div>{required ? "필수" : "필수 아님"}</div>
+      <div>문자: {text}</div>
+      <div>count: {count}</div>
+      <button>
+        onClick={handleClick} disabled={isLimited}
+        증가
+      </button>
+    </h2>
+  );
+}
+```
+
+- 함수 컴포넌트와 클래스 컴포넌트는 서로 렌더링하는 값이 다릅니다.
+- 두 컴포넌트 모두 handleClick을 클릭하면 3초 뒤에 props에 있는 user를 alert해주는 기능을 기대하겠지만, 클래스 컴포넌트는 3초 뒤 변경된 props를 기준으로 메시지가 뜹니다.
+- 이는 클래스 컴포넌트의 props가 항상 this로부터 가져오기 때문입니다.
+- this가 가리키는 객체인 컴포넌트의 인스턴스의 멤버는 변경 가능(mutable)합니다.
+- 랜더링이 되어 새로운 인스턴스의 새로운 this.props가 사용되어 예상한 결과와는 다릅니다.
+
+```tsx
+// 클래스 컴포넌트
+import React from "react";
+
+type Props = {
+  user: string;
+};
+
+export class ClassComponent extends React.Component<Props, {}> {
+  private showMesssage = () => {
+    alert("Hello " + this.props.user);
+  };
+
+  private handleClick = () => {
+    setTimeout(this.showMesssage, 3000);
+  };
+
+  // 해결방안 1 :this.props를 조금 일찍 부르고, 함수의 인수로 넘기기
+  // 하지만 잡근해야 하는 props/state가 많아질 수록 코드가 같이 복잡해짐
+  // + showMesssage가 다른 메서드에 의존하게 되면 더 복잡해짐
+  // private handleClick = () => {
+  //   const {
+  //     props: { user },
+  //   } = this;
+  //   setTimeout(this.showMesssage(user), 3000);
+  // };
+
+  render() {
+    return <button onClick={this.handleClick}>follow</button>;
+  }
+
+  // 해결방안 2 : render()에 필요한 값 넣기
+  // 렌더링 될 때마다 함수가 새로 생성되고 할당되기를 반복되어 성능저하
+  render() {
+    const props = this.props;
+
+    private showMesssage = () => {
+      alert("Hello " + props.user);
+    };
+
+    private handleClick = () => {
+      setTimeout(showMesssage, 3000);
+    };
+
+      return <button onClick={handleClick}>follow</button>;
+
+  }
+}
+```
+
+```tsx
+// 함수 컴포넌트
+import React from "react";
+
+type Props = {
+  user: string;
+};
+
+export function SampleComponent(props: Props) {
+  const showMesssage = () => {
+    alert("Hello " + props.user);
+  };
+
+  const handleClick = () => {
+    setTimeout(showMesssage, 3000);
+  };
+
+  return <button onClick={handleClick}>follow</button>;
+}
+```
+
+</details>
+
 ## 💭 TMI
 
 > 클래스 컴포넌트로 작성된 코드가 너무 많이 있어 이를 deprecate시킬 일은 없다.<br/>
