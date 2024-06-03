@@ -2,7 +2,7 @@
 
 <details>
 
-<summary> 1. question </summary>
+<summary> 1.  </summary>
 
 ```
 
@@ -12,4 +12,4 @@
 
 ## 💭 TMI
 
-> comments on the topic I learned today
+>
