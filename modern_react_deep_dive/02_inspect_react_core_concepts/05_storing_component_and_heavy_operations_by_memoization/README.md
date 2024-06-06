@@ -38,8 +38,6 @@ useCallback과 useMemo을 사용할 경우               안하는 비용
 
 </details>
 
-<details>
-
 ```jsx
 import React, { useEffect, useMemo, useState } from "react";
 
@@ -76,6 +74,8 @@ function App() {
 export default App;
 ```
 
+<details>
+
 <summary> 2. [1]과 [2]는 어떻게 다른가요? </summary>
 
 ```
@@ -93,4 +93,5 @@ App에서도 쓰입니다.
 
 ## 💭 TMI
 
->
+> 메모이제이션을 써야할 때와 그렇지 않을 때를 구분하기 위해서는 해당 지표들을 보는 방법을 배워야할 거 같다.
+> 객체는 참조가 바뀌면 다른 값으로 인식할 수 있는 문제를 메모이제이션을 활용하면 방지 가능하다!
