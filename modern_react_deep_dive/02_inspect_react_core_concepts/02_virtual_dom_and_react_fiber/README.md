@@ -54,7 +54,7 @@ CSS 파싱을 하여 CSS노드로 구성된 CSSSOM을 생성합니다.
     <title>Critial Path: Hello world!</title>
   </head>
   <body>
-    <div style="width: 10%">
+    <div style="width: 50%">
       <div id="text" style="width: 50%">Hello world!</div>
     </div>
   </body>
@@ -63,7 +63,7 @@ CSS 파싱을 하여 CSS노드로 구성된 CSSSOM을 생성합니다.
 
 1. 2위의 HTML을 브라우저가 다운로드하여 분석합니다.
 2. 스타일시트가 포함된 link 태그를 발견하고, style.css를 다운로드 하고 CSSOM을 생성합니다.
-3. body 태그 하단의 div는 넓이가 50%이므로 뷰포트 기준 좌우 너비를 100%으로 잡습니다.
+3. body 태그 하단의 div는 넓이가 50%이므로 뷰포트 기준 좌우 너비를 50%으로 잡습니다.
 4. 그 아래의 div는 넓이가 50%이므로 상위 태그 기준으로 너비를 50%으로 잡습니다.
 5. 눈에 보이는 요소들을 파악했으므로 2에서 생성했던 CSSOM 정보를 반영하는데, id='text'의 배경은 빨강, 폰트색은 흰색으로 입힙니다.
 
