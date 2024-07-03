@@ -44,7 +44,7 @@ CSS 파싱을 하여 CSS노드로 구성된 CSSSOM을 생성합니다.
 }
 ```
 
-``html
+```html
 
 <!DOCTYPE html>
 <html>
@@ -59,7 +59,7 @@ CSS 파싱을 하여 CSS노드로 구성된 CSSSOM을 생성합니다.
     </div>
   </body>
 </html>
-``
+```
 
 1. 2위의 HTML을 브라우저가 다운로드하여 분석합니다.
 2. 스타일시트가 포함된 link 태그를 발견하고, style.css를 다운로드 하고 CSSOM을 생성합니다.
