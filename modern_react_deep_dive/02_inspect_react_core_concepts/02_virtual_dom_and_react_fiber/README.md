@@ -42,6 +42,9 @@ CSS 파싱을 하여 CSS노드로 구성된 CSSSOM을 생성합니다.
   background-color: red;
   color: white;
 }
+div{
+  border:1px solid black;
+}
 ```
 
 ```html
@@ -67,7 +70,8 @@ CSS 파싱을 하여 CSS노드로 구성된 CSSSOM을 생성합니다.
 4. 그 아래의 div는 넓이가 50%이므로 상위 태그 기준으로 너비를 50%으로 잡습니다.
 5. 눈에 보이는 요소들을 파악했으므로 2에서 생성했던 CSSOM 정보를 반영하는데, id='text'의 배경은 빨강, 폰트색은 흰색으로 입힙니다.
 
-![출처: [web.dev](https://web.dev/static/articles/critical-rendering-path/render-tree-construction/image/calculating-layout-inform-93e78448ce474_1920.png)](https://web.dev/static/articles/critical-rendering-path/render-tree-construction/image/calculating-layout-inform-93e78448ce474_1920.png)
+<img width="857" alt="image" src="https://github.com/Pyotato/fe_study/assets/102423086/18c56d05-e92c-48fd-b5b9-3b0b8be0a702"/>
+
 
 </details>
 
